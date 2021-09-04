@@ -26,26 +26,28 @@
 static inline const char* BtmGetDefaultName()
 {
     char product_device[PROPERTY_VALUE_MAX];
-    property_get("ro.product.device", product_device, "");
+    property_get("ro.product.device", device, "");
     
-    if (strstr(product_device, "starqltechn"))
+    if (!strcmp("starqltechn", device))
         return "Galaxy S9";
-    if (strstr(product_device, "star2qltechn"))
+
+    if (!strcmp("star2qltechn", device))
         return "Galaxy S9+";
-    if (strstr(product_device, "crownqltechn"))
+
+    if (!strcmp("crownqltechn", device))
         return "Galaxy Note 9";
     
-    // Fallback to Default
-    return "Samsung Galaxy";
+    return "";
 }
 
 #define BTM_DEF_LOCAL_NAME BtmGetDefaultName()
 #define BTM_WBS_INCLUDED TRUE       /* Enable WBS */
 #define BTIF_HF_WBS_PREFERRED FALSE /* Don't prefer WBS    */
 #define BLE_VND_INCLUDED TRUE
-#define BTM_SCO_ENHANCED_SYNC_ENABLED FALSE
 #define MAX_ACL_CONNECTIONS   16
 #define MAX_L2CAP_CHANNELS    16
+#define BT_CLEAN_TURN_ON_DISABLED 1
+#define AVDT_NUM_SEPS 12
 
 #pragma pop_macro("PROPERTY_VALUE_MAX")
 

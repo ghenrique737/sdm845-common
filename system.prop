@@ -1,24 +1,15 @@
-# Disable ConsumerIR
-config.disable_consumerir=true
+# Data modules
+ro.vendor.use_data_netmgrd=false
 
-# SF
-debug.sf.latch_unsignaled=1
+# Netflix custom property
+ro.netflix.bsp_rev=Q845-05000-1
 
-# read DS/SS property
-import /efs/factory.prop
-vendor.qcom.bluetooth.soc=cherokee
-persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
-persist.vendor.bt.aac_frm_ctl.enabled=true
-bt.max.hfpclient.connections=1
-persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
-persist.bluetooth.a2dp_offload.disabled=true
-persist.vendor.qcom.bluetooth.enable.splita2dp=true
-ro.bluetooth.a2dp_offload.supported=true
-vendor.audio.feature.a2dp_offload.enable=true
+# QC framework value-adds
+ro.vendor.qti.va_aosp.support=1
 
-#ADB props
-ro.secure=1
-ro.debuggable=0
+# RIL
+ro.vendor.sec.radio.def_network=9,1
+persist.radio.sib16_support=1
 
-# Hack for Youtube
-sys.display-size=3840x2160 
+# Samsung specific porperties
+ro.product_ship=true
