@@ -17,6 +17,10 @@
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/samsung/sdm845-common/sdm845-common-vendor.mk)
 
+# AID/fs configs
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -32,7 +36,14 @@ DEVICE_PACKAGE_OVERLAYS += \
 #    TelephonyResCommon
 
 # Properties
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+-include $(LOCAL_PATH)/system_prop.mk
+#PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.va_aosp.support=1
+
+PRODUCT_ODM_PROPERTIES += \
+    ro.vendor.qti.va_odm.support=1
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
@@ -146,6 +157,9 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-legacy
 
 # Common init scripts
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/bin/init.class_main.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.class_main.sh \
     $(COMMON_PATH)/rootdir/bin/init.qcom.early_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.early_boot.sh \
@@ -397,3 +411,7 @@ PRODUCT_PACKAGES += \
 
 #PRODUCT_BOOT_JARS += \
 #    WfdCommon
+
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.qcom.rc
